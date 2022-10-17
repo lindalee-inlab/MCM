@@ -8,6 +8,7 @@ main program
 main algorithm
 - findnear.m Find near edge
 - weightfunc.m Define the weight function
+
 Follow-up work can mainly modify these two
 
 ## plot_record.m
