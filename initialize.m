@@ -1,0 +1,23 @@
+function [D]=initialize(a,b,Threshold)
+    r=length(a);
+    c=length(b);
+    L=[];
+    for i=1:r
+        L(i,1)=a(i).x1;
+        L(i,2)=a(i).y1 ;
+        L(i,3)=a(i).x2 ;
+        L(i,4)=a(i).y2;
+    end
+    P=[];
+    for i=1:c
+        P(i,1)=b(i).x;
+        P(i,2)=b(i).y ;
+    end
+    A=L(:,2)-L(:,4);
+    B=L(:,3)-L(:,1);
+    C=L(:,1).*L(:,4)-L(:,3).*L(:,2);
+    D=abs(A*P(:,1)'+B*P(:,2)'+repmat(C,1,c))./(repmat(sqrt(A.*A+B.*B),1,c));
+    D(D>Threshold(1))=-1;
+    D(D>=0)=Threshold(1)-D(D>=0);
+    D(D==-1)=0;
+end
